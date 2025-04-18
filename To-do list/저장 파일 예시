@@ -1,0 +1,14 @@
+[
+  {
+    "task": "파이썬 과제 제출하기",
+    "done": false,
+    "due": "2025-04-20",
+    "priority": 1
+  },
+  {
+    "task": "헬스장 가기",
+    "done": true,
+    "due": "2025-04-18",
+    "priority": 3
+  }
+]
