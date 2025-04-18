@@ -5,7 +5,7 @@ TODO_FILE = "todo_data.json"
 
 while True:
     print("📋 나의 할 일 관리 프로그램\n----------------------------\n1. 할 일 추가\n0. 종료")
-    choice = input("메뉴 선택: ")
+    choice = input("메뉴 선택: ") #수정
     
     if choice == "1":
         todo = input("할 일을 입력하세요: ").strip()
