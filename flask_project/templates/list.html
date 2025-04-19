@@ -2,30 +2,33 @@
 <html>
 
 <head>
-    <title>입력된 항목 리스트</title>
+    <title>할 일 목록</title>
 </head>
 
 <body>
     <h1>할 일 목록</h1>
+
+    <a href="/form"><button>➕ 항목 추가</button></a>
+    <a href="/"><button>🏠 홈</button></a>
+
     <ul>
         {% for item in items %}
         {% set idx = loop.index0 %}
         <li{% if item.done %} style="color: gray; text-decoration: line-through;" {% endif %}>
             {{ item.text }}
-    
+
             <form action="/done/{{ idx }}" method="post" style="display:inline;">
                 <button type="submit">
                     {% if item.done %}✔ 완료됨{% else %}✅ 완료하기{% endif %}
                 </button>
             </form>
-    
+
             <form action="/delete/{{ idx }}" method="post" style="display:inline;">
                 <button type="submit">❌ 삭제</button>
             </form>
             </li>
             {% endfor %}
     </ul>
-    <a href="/form">할 일 추가하기</a>
 </body>
 
 </html>

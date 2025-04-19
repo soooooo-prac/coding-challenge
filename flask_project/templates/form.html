@@ -2,15 +2,19 @@
 <html>
 
 <head>
-    <title>입력 폼</title>
+    <title>할 일 추가</title>
 </head>
 
 <body>
-    <h1>간단한 입력 폼</h1>
+    <h1>할 일 추가</h1>
+
     <form action="/submit" method="post">
-        <label>이름: <input type="text" name="username"></label><br><br>
+        <label>내용: <input type="text" name="username"></label><br><br>
         <input type="submit" value="제출">
     </form>
+
+    <a href="/list"><button>📋 목록 보기</button></a>
+    <a href="/"><button>🏠 홈</button></a>
 </body>
 
 </html>
