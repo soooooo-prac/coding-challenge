@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from todo.views import home, add_todo, delete_todo  # 수정
+from todo.views import home, add_todo, delete_todo, toggle_todo, edit_todo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
     path('add/', add_todo),
-    path('delete/<int:todo_id>/', delete_todo),  # 추가
+    path('delete/<int:todo_id>/', delete_todo),
+    path('toggle/<int:todo_id>/', toggle_todo),
+    path('edit/<int:todo_id>/', edit_todo),
 ]

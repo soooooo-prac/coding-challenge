@@ -7,8 +7,22 @@
 <ul>
     {% for todo in todos %}
     <li>
-        <input type="checkbox" {% if todo.is_done %}checked{% endif %} disabled>
-        {{ todo.content }}
+        <form method="POST" action="/toggle/{{ todo.id }}/" style="display: inline;">
+            {% csrf_token %}
+            <input type="checkbox" onchange="this.form.submit()" {% if todo.is_done %}checked{% endif %}>
+        </form>
+
+        {% if todo.is_done %}
+        <span style="text-decoration: line-through;">
+            {{ todo.content }}
+        </span>
+        {% else %}
+        <span>
+            {{ todo.content }}
+        </span>
+        {% endif %}
+
+        <a href="/edit/{{ todo.id }}/">✏ 수정</a>
         <a href="/delete/{{ todo.id }}/">🗑 삭제</a>
     </li>
     {% empty %}

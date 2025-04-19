@@ -21,3 +21,20 @@ def delete_todo(request, todo_id):
     todo = Todo.objects.get(id=todo_id)
     todo.delete()
     return redirect('/')
+
+def toggle_todo(request, todo_id):
+    todo = Todo.objects.get(id=todo_id)
+    todo.is_done = not todo.is_done
+    todo.save()
+    return redirect('/')
+
+def edit_todo(request, todo_id):
+    todo = Todo.objects.get(id=todo_id)
+    if request.method == 'POST':
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = TodoForm(instance=todo)
+    return render(request, 'todo/edit.html', {'form': form})
