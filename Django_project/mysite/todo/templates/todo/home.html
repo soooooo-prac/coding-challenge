@@ -3,5 +3,15 @@
 {% block title %}홈{% endblock %}
 
 {% block content %}
-<p>여기는 홈 화면입니다. 템플릿 상속을 이용하고 있어요!</p>
+<a href="/add/">➕ 새 할 일 추가</a>
+<ul>
+    {% for todo in todos %}
+    <li>
+        {{ todo.content }}
+        <a href="/delete/{{ todo.id }}/">🗑 삭제</a>
+    </li>
+    {% empty %}
+    <li>할 일이 없습니다!</li>
+    {% endfor %}
+</ul>
 {% endblock %}
