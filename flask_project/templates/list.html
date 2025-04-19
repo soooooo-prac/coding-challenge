@@ -1,34 +1,33 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>할 일 목록</title>
-</head>
+{% block title %}할 일 목록{% endblock %}
 
-<body>
-    <h1>할 일 목록</h1>
+{% block content %}
+<h1 class="mb-4">📋 할 일 목록</h1>
 
-    <a href="/form"><button>➕ 항목 추가</button></a>
-    <a href="/"><button>🏠 홈</button></a>
+<div class="mb-3">
+    <a href="/form" class="btn btn-success me-2">➕ 항목 추가</a>
+    <a href="/" class="btn btn-secondary">🏠 홈</a>
+</div>
 
-    <ul>
-        {% for item in items %}
-        {% set idx = loop.index0 %}
-        <li{% if item.done %} style="color: gray; text-decoration: line-through;" {% endif %}>
-            {{ item.text }}
-
+<ul class="list-group w-100" style="max-width: 500px;">
+    {% for item in items %}
+    {% set idx = loop.index0 %}
+    <li class="list-group-item d-flex justify-content-between align-items-center
+                {% if item.done %}text-muted text-decoration-line-through{% endif %}">
+        {{ item.text }}
+        <div>
             <form action="/done/{{ idx }}" method="post" style="display:inline;">
-                <button type="submit">
+                <button class="btn btn-sm {% if item.done %}btn-outline-success{% else %}btn-success{% endif %}"
+                    type="submit">
                     {% if item.done %}✔ 완료됨{% else %}✅ 완료하기{% endif %}
                 </button>
             </form>
-
             <form action="/delete/{{ idx }}" method="post" style="display:inline;">
-                <button type="submit">❌ 삭제</button>
+                <button class="btn btn-sm btn-danger ms-2" type="submit">❌ 삭제</button>
             </form>
-            </li>
-            {% endfor %}
-    </ul>
-</body>
-
-</html>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

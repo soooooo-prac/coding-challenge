@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>할 일 추가</title>
-</head>
+{% block title %}할 일 추가{% endblock %}
 
-<body>
-    <h1>할 일 추가</h1>
+{% block content %}
+<h1 class="mb-4">할 일 추가</h1>
 
-    <form action="/submit" method="post">
-        <label>내용: <input type="text" name="username"></label><br><br>
-        <input type="submit" value="제출">
-    </form>
+<form action="/submit" method="post" class="mb-3" style="width: 300px;">
+    <div class="mb-3">
+        <label class="form-label">내용:</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">제출</button>
+</form>
 
-    <a href="/list"><button>📋 목록 보기</button></a>
-    <a href="/"><button>🏠 홈</button></a>
-</body>
-
-</html>
+<div class="d-flex gap-2">
+    <a href="/list" class="btn btn-outline-secondary">📋 목록 보기</a>
+    <a href="/" class="btn btn-outline-secondary">🏠 홈</a>
+</div>
+{% endblock %}

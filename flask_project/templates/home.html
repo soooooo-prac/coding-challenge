@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>홈</title>
-</head>
+{% block title %}홈{% endblock %}
 
-<body>
-    <h1>🌟 환영합니다!</h1>
-    <p>할 일을 관리해보세요!</p>
+{% block content %}
+<h1 class="mb-4">🌟 환영합니다!</h1>
+<p>할 일을 관리해보세요!</p>
 
-    <a href="/form"><button>➕ 항목 추가</button></a>
-    <a href="/list"><button>📋 목록 보기</button></a>
-</body>
-
-</html>
+<div class="d-flex gap-2">
+    <a href="/form" class="btn btn-outline-primary">➕ 항목 추가</a>
+    <a href="/list" class="btn btn-outline-primary">📋 목록 보기</a>
+</div>
+{% endblock %}
