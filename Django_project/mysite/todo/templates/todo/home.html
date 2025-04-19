@@ -7,6 +7,7 @@
 <ul>
     {% for todo in todos %}
     <li>
+        <input type="checkbox" {% if todo.is_done %}checked{% endif %} disabled>
         {{ todo.content }}
         <a href="/delete/{{ todo.id }}/">🗑 삭제</a>
     </li>
