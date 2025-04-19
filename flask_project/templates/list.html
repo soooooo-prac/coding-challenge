@@ -6,18 +6,26 @@
 </head>
 
 <body>
-    <h1>지금까지 입력한 이름들:</h1>
+    <h1>할 일 목록</h1>
     <ul>
         {% for item in items %}
-        <li>
-            {{ item }}
-            <form action="/delete/{{ loop.index0 }}" method="post" style="display:inline;">
+        {% set idx = loop.index0 %}
+        <li{% if item.done %} style="color: gray; text-decoration: line-through;" {% endif %}>
+            {{ item.text }}
+    
+            <form action="/done/{{ idx }}" method="post" style="display:inline;">
+                <button type="submit">
+                    {% if item.done %}✔ 완료됨{% else %}✅ 완료하기{% endif %}
+                </button>
+            </form>
+    
+            <form action="/delete/{{ idx }}" method="post" style="display:inline;">
                 <button type="submit">❌ 삭제</button>
             </form>
-        </li>
-        {% endfor %}
+            </li>
+            {% endfor %}
     </ul>
-    <a href="/form">다시 입력하기</a>
+    <a href="/form">할 일 추가하기</a>
 </body>
 
 </html>

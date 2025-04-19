@@ -34,7 +34,7 @@ def form():
 @app.route("/submit", methods=["POST"])
 def submit():
     username = request.form["username"]
-    todo_list.append(username)
+    todo_list.append({"text": username, "done": False})
     save_data()
     return redirect(url_for("show_list"))
 
@@ -46,6 +46,13 @@ def show_list():
 def delete(item_id):
     if 0 <= item_id < len(todo_list):
         todo_list.pop(item_id)
+        save_data()
+    return redirect(url_for("show_list"))
+
+@app.route("/done/<int:item_id>", methods=["POST"])
+def mark_done(item_id):
+    if 0 <= item_id < len(todo_list):
+        todo_list[item_id]["done"] = not todo_list[item_id]["done"]
         save_data()
     return redirect(url_for("show_list"))
 
